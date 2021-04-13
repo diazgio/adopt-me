@@ -13,8 +13,8 @@ const App = () => {
         <div>
           <NavBar />
           <Router>
-            <SearchParams exact path="/" />
-            <Details exact path="/details/:id" />
+            <SearchParams path="/" />
+            <Details path="/details/:id" />
           </Router>
         </div>
       </ThemeContext.Provider>

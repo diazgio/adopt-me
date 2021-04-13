@@ -1,17 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
-import pet,{ ANIMALS } from '@frontendmasters/pet';
+import React, { 
+  useState,
+  useEffect, 
+  useContext, 
+  FunctionComponent,
+} from 'react';
+import pet,{ ANIMALS, Animal } from '@frontendmasters/pet';
 import useDropdown from './useDropdown';
 import Results from './Results';
 import 'regenerator-runtime/runtime';
 import ThemeContext from './ThemeContext';
+import { RouteComponentProps } from '@reach/router';
 
-const SearchParams = () => {
+const SearchParams: FunctionComponent<RouteComponentProps> = () => {
+  const [theme, setTheme] = useContext(ThemeContext);
   const [location, setLocation] = useState("Seattle, WA");
-  const [breeds, setBreeds] = useState([]);
+  const [breeds, setBreeds] = useState([] as string[]);
+  const [pets, setPets] = useState([] as Animal[]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
-  const [pets, setPets] = useState([]);
-  const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
     const { animals } = await pet.animals({
@@ -31,7 +37,7 @@ const SearchParams = () => {
       const breedStrings = apiBreeds.map(({ name }) => name);
       setBreeds(breedStrings);
     }, console.error);
-  }, [animal, setBreed, setBreeds]);
+  }, [animal]);
 
   return (
     <div className="search-params">

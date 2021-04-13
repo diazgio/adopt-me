@@ -1,9 +1,18 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import { Photo } from '@frontendmasters/pet'
 import { Link } from '@reach/router';
 
-export default function Pet({ name, animal, breed, media, location, id }){
+interface IProps {
+  name: string;
+  animal: string;
+  breed: string;
+  media: Photo[];
+  location: string;
+  id: number;
+}
 
+const Pet: FunctionComponent<IProps> = props => {
+  const { name, animal, breed, media, location, id } = props;
   let hero = 'http://placecorgi.com/300/300';
   if(media.length) {
     hero = media[0].small;
@@ -21,3 +30,5 @@ export default function Pet({ name, animal, breed, media, location, id }){
     </Link>
   );
 };
+
+export default Pet;

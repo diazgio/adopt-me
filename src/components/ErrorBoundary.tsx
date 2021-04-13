@@ -1,14 +1,12 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-undef */
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import React, { Component, ErrorInfo } from 'react';
+import { Link, Redirect } from '@reach/router';
 
 class ErrorBoundary extends Component {
-  state = { hasError: false, redirect: false }
+  state = { hasError: false, redirect: "" }
   static getDerivedStateFromError () {
     return { hasError: true };
   }
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("ErroBoundary cought an error", error, info);
   }
   componentDidUpdate() {
