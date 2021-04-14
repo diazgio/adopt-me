@@ -1,4 +1,4 @@
-## Calculator Project
+## Adopt Me Project
 
 ![screenshot](./src/assets/images/intro.gif)
 
